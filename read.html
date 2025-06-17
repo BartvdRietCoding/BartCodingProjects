@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tekstbestanden lezen met File.ReadAllText()</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 2em 3em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      color: #3949ab;
+      margin-bottom: 0.3em;
+    }
+    h1 {
+      font-size: 2.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 1rem;
+    }
+    h1 i {
+      color: #3949ab;
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+    }
+    .section {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5em;
+      margin-bottom: 3em;
+      background: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .section i {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      color: #3949ab;
+      margin-top: 4px;
+    }
+    .section div {
+      flex: 1;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-top: 0.5em;
+    }
+    pre {
+      background: #e3e7f1;
+      padding: 1.2em;
+      border-left: 5px solid #3949ab;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-size: 1rem;
+      margin-top: 1em;
+    }
+    code {
+      background-color: #f9f9f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-size: 1rem;
+      color: #c7254e;
+    }
+    a {
+      color: #f57c00;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1><i data-lucide="file-text"></i> Tekstbestanden lezen met <code>File.ReadAllText()</code> in C#</h1>
+
+  <div class="section">
+    <i data-lucide="book-open"></i>
+    <div>
+      <h2>Wat is <code>File.ReadAllText()</code>?</h2>
+      <p>
+        <code>File.ReadAllText()</code> is een methode in C# waarmee je heel eenvoudig de volledige inhoud van een tekstbestand in één keer kunt inlezen. Dit betekent dat je niet handmatig een bestand hoeft te openen, regels hoeft te lezen of te sluiten; alles wordt automatisch voor je geregeld.
+      </p>
+      <p>
+        Deze methode leest het bestand als één grote tekststring. Dat is ideaal als je bijvoorbeeld snel een configuratiebestand of een kleine tekst wilt verwerken zonder veel ingewikkelde code.
+      </p>
+      <p>
+        Het is belangrijk dat het bestand bestaat, anders krijg je een foutmelding. Daarom kun je het beste altijd controleren of het bestand bestaat, of gebruik maken van try-catch om fouten netjes af te handelen.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="code"></i>
+    <div>
+      <h2>Een eenvoudig voorbeeld</h2>
+      <p>Hier is een voorbeeld hoe je <code>File.ReadAllText()</code> gebruikt om een tekstbestand te lezen en de inhoud weer te geven in de console:</p>
+      <pre><code>using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // Het pad naar het bestand dat je wilt lezen
+        string pad = "voorbeeld.txt";
+
+        try
+        {
+            // Lezen van de volledige inhoud als string
+            string inhoud = File.ReadAllText(pad);
+
+            // Weergeven van de inhoud in de console
+            Console.WriteLine("Inhoud van het bestand:");
+            Console.WriteLine(inhoud);
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"Het bestand '{pad}' is niet gevonden.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Er is een fout opgetreden bij het lezen van het bestand:");
+            Console.WriteLine(ex.Message);
+        }
+    }
+}</code></pre>
+      <p>
+        In dit voorbeeld wordt het bestand <code>voorbeeld.txt</code> gelezen en wordt de inhoud netjes op het scherm getoond. Als het bestand niet bestaat, krijg je een vriendelijke foutmelding.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="folder-open"></i>
+    <div>
+      <h2>Waar staat het bestand?</h2>
+      <p>
+        Net als bij schrijven staat het bestand meestal in de werkmap van je applicatie, bijvoorbeeld <code>bin\Debug\netX.X</code> bij Visual Studio projecten. Als je zeker wilt weten waar het programma zoekt, kun je het volgende gebruiken:
+      </p>
+      <pre><code>Console.WriteLine("Huidige werkmap: " + Directory.GetCurrentDirectory());</code></pre>
+      <p>
+        Dit helpt je om het bestand snel te vinden, zodat je het kunt openen of aanpassen. Als het bestand er niet is, kun je het handmatig toevoegen of eerst een schrijfoperatie uitvoeren om het aan te maken.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="play-circle"></i>
+    <div>
+      <h2>Probeer het zelf!</h2>
+      <p>
+        Met onze interactieve console-app kun je:
+      </p>
+      <ul>
+        <li>Zelf een bestandsnaam invoeren die je wil lezen</li>
+        <li>De app toont de volledige inhoud van dat bestand, of geeft een foutmelding als het bestand niet bestaat</li>
+        <li>Leer stap voor stap hoe het inlezen van bestanden werkt in C#</li>
+      </ul>
+      <p>
+        👉 <a href="https://github.com/jouwgebruikersnaam/bestand-lezen-demo" target="_blank" rel="noopener noreferrer">Bekijk de interactieve demo op GitHub</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createIcons, icons } from 'https://cdn.jsdelivr.net/npm/lucide@latest/+esm';
+    createIcons({ icons });
+  </script>
+</body>
+</html>

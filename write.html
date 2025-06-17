@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tekstbestanden schrijven met File.WriteAllText()</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 2em 3em;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.7;
+    }
+    h1, h2 {
+      color: #3949ab;
+      margin-bottom: 0.3em;
+    }
+    h1 {
+      font-size: 2.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 1rem;
+    }
+    h1 i {
+      color: #3949ab;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+    .section {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5em;
+      margin-bottom: 3em;
+      background: white;
+      padding: 2em;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .section i {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      color: #3949ab;
+      margin-top: 4px;
+    }
+    .section div {
+      flex: 1;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-top: 0.5em;
+    }
+    pre {
+      background: #e3e7f1;
+      padding: 1.2em;
+      border-left: 5px solid #3949ab;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-size: 1rem;
+      margin-top: 1em;
+    }
+    code {
+      background-color: #f9f9f9;
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      font-size: 1rem;
+      color: #c7254e;
+    }
+    a {
+      color: #f57c00;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1><i data-lucide="file-text"></i> Tekstbestanden schrijven met <code>File.WriteAllText()</code> in C#</h1>
+
+  <div class="section">
+    <i data-lucide="edit-3"></i>
+    <div>
+      <h2>Wat is <code>File.WriteAllText()</code>?</h2>
+      <p>
+        In C# is <code>File.WriteAllText()</code> een handige methode om snel en eenvoudig een tekstbestand te maken of te overschrijven. Met één regel code schrijf je de volledige inhoud van een string naar een bestand op je harde schijf.
+      </p>
+      <p>
+        Dit betekent dat je niet zelf een bestand hoeft te openen, een writer hoeft te maken of te sluiten; alles wordt intern netjes afgehandeld. Dit maakt het ideaal voor eenvoudige schrijfacties waarbij je de hele inhoud in één keer wegschrijft.
+      </p>
+      <p>
+        Als het bestand nog niet bestaat, zal de methode het voor je aanmaken. Als het bestand wél bestaat, zal de bestaande inhoud worden vervangen door de nieuwe tekst.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="code"></i>
+    <div>
+      <h2>Een eenvoudig voorbeeld</h2>
+      <p>Hier is een korte codevoorbeeld dat aantoont hoe je <code>File.WriteAllText()</code> gebruikt om een bestand te schrijven:</p>
+      <pre><code>using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        // De naam van het bestand dat we willen schrijven
+        string pad = "voorbeeld.txt";
+
+        // De tekst die we in het bestand willen plaatsen
+        string tekst = "Hallo wereld! Dit is een voorbeeldtekst.";
+
+        // Schrijven van de tekst naar het bestand
+        File.WriteAllText(pad, tekst);
+
+        Console.WriteLine($"De tekst is succesvol weggeschreven naar {pad}");
+    }
+}</code></pre>
+      <p>
+        Wanneer je dit programma uitvoert, wordt het bestand <code>voorbeeld.txt</code> aangemaakt in dezelfde map waar je programma draait.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="folder-open"></i>
+    <div>
+      <h2>Waar vind ik het bestand terug?</h2>
+      <p>
+        De locatie waar het bestand wordt opgeslagen is belangrijk om te weten, zeker als je het resultaat wilt bekijken. Standaard schrijft <code>File.WriteAllText()</code> het bestand in de huidige werkmap van je applicatie.
+      </p>
+      <p>
+        Als je werkt in Visual Studio, is dit vaak de <code>bin\Debug\netX.X</code> map van je project. Je kunt dit pad gemakkelijk achterhalen met de code:
+      </p>
+      <pre><code>Console.WriteLine(Directory.GetCurrentDirectory());</code></pre>
+      <p>
+        Het programma geeft dan het volledige pad naar de map waar het bestand wordt opgeslagen. Zo weet je precies waar je het bestand kunt openen, bijvoorbeeld via de Verkenner in Windows of Finder op macOS.
+      </p>
+      <p>
+        In de interactieve console-app die we maken, tonen we dit pad expliciet aan de gebruiker om verwarring te voorkomen.
+      </p>
+    </div>
+  </div>
+
+  <div class="section">
+    <i data-lucide="play-circle"></i>
+    <div>
+      <h2>Probeer het zelf!</h2>
+      <p>
+        Wil je liever zelf aan de slag? Onze interactieve console-app neemt je stap voor stap mee:
+      </p>
+      <ul>
+        <li>Je voert zelf een bestandsnaam in, bijvoorbeeld <code>mijntekst.txt</code></li>
+        <li>Je typt de tekst die je wilt opslaan</li>
+        <li>De app schrijft het bestand weg en toont het pad waar je het bestand kunt vinden</li>
+      </ul>
+      <p>
+        Dit is een ideale manier om zelf ervaring op te doen en te begrijpen hoe bestanden schrijven in C# werkt.
+      </p>
+      <p>
+        👉 <a href="https://github.com/jouwgebruikersnaam/bestand-schrijven-demo" target="_blank" rel="noopener noreferrer">Bekijk de interactieve demo op GitHub</a>
+      </p>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createIcons, icons } from 'https://cdn.jsdelivr.net/npm/lucide@latest/+esm';
+    createIcons({ icons });
+  </script>
+</body>
+</html>
